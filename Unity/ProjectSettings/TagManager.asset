@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UpgradePanel
+  - MenuPanel
+  - Rike
+  - Resource
+  - Level
+  - ResA
+  - LevelA
+  - Tiles
+  - Tree
   layers:
   - Default
   - TransparentFX
