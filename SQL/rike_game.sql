@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Base de données : `rike_game`
 --
 
-CREATE DATABASE [IF NOT EXISTS] `rike_game`
+CREATE DATABASE IF NOT EXISTS `rike_game`;
 
 
 -- --------------------------------------------------------
