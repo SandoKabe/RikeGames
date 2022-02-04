@@ -1,24 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace clicker
 {
     public class DesignManager : MonoBehaviour
     {
-        public TreeScriptableObject treeSO;
-        public GameObject parentTree;
+        // Use to display Tree on scene
+        [SerializeField] private TreeScriptableObject treeSO;
+        [SerializeField] private GameObject parentTree;
 
-        public Tiles ground;
+        [SerializeField] private Tiles ground;
 
         GameObject tree;
         GameObject tile;
 
-        public delegate void CallbackDelegate(); // Set up a generic delegate type.
-        static public event CallbackDelegate BUY_DESIGN_DELEGATE;
-
-
-        // Start is called before the first frame update
         private void Awake()
         {
             treeSO = TreeScriptableObject.Instance;
@@ -35,6 +30,7 @@ namespace clicker
         {
             GameState.LOAD_DATA_DELEGATE -= LoadPine;
         }
+
         private void GetPine(string name, bool loading = false)
         {
             if (!PlayerScore.TryToBuyTree() && !loading)
@@ -76,14 +72,11 @@ namespace clicker
         {
             GetPine("pineC");
         }
+
+        // Update Pine on loading data
         public void LoadPine()
         {
-
-            // get tileObjs 
-            // get Tileslist
-            // get seed
-            // initstate
-            // foreach tree in list instatiate with the tiles
+            // Clean current scene
             ResetTree();
 
             List<string> ordererTree = treeSO.ordererTree;
@@ -93,16 +86,18 @@ namespace clicker
 
         }
 
-        public void ResetTree()
+        private void ResetTree()
         {
             if (GameObject.FindGameObjectWithTag("Tree") != null)
             {
                 GameObject del = GameObject.FindGameObjectWithTag("Tree");
-                Destroy(del);
+                DestroyImmediate(del);
 
             }
 
         }
+
     }
+
 }
 

@@ -29,7 +29,7 @@ namespace clicker
         protected void Awake()
         {
             SaveButton.GAME_DATA_DELEGATE += SetLevel;
-            GameState.LOAD_DATA_DELEGATE += UpdateLevel;
+            GameState.LOAD_DATA_DELEGATE += PutLevel;
         }
 
         protected void Start()
@@ -46,11 +46,11 @@ namespace clicker
             GameState.LOAD_DATA_DELEGATE -= PutLevel;
         }
 
-        public virtual void SetLevel() { }
+        protected virtual void SetLevel() { }
 
-        public virtual void PutLevel() { }
+        protected virtual void PutLevel() { }
 
-        public virtual void SetResPerLevel(bool loading = false) { }
+        protected virtual void SetResPerLevel(bool loading = false) { }
 
         public virtual void UpdateLevel() { }
 

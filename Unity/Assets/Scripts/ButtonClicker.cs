@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 namespace clicker
 {
+    // Menu Button use to show Upgrade Menu
     public class ButtonClicker : MonoBehaviour, IPointerClickHandler
     {
-
 
         GraphicRaycaster m_Raycaster;
         PointerEventData m_PointerEventData;
@@ -29,7 +29,6 @@ namespace clicker
 
         }
 
-
-
     }
+
 }

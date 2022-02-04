@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace clicker {
     public class AutoCounter : UpgradeLevel
     {
-        // Start is called before the first frame update
+        // Manage Level Auto Counter
         private void Start()
         {
             level = 0;
@@ -13,7 +11,7 @@ namespace clicker {
 
         }
 
-        public override void SetResPerLevel(bool loading = false)
+        protected override void SetResPerLevel(bool loading = false)
         {
             if (level == 0)
             {
@@ -24,14 +22,14 @@ namespace clicker {
                 nbResPerLevel = Mathf.Pow(2, level - 1);
 
             }
-            // Update nbResAuto
-            // TODO A sup si loading
+
+            // Not update UI on loading GO is disable
+            // In this case UI Auto will be update on Enable()
             if (!loading)
             {
                 UIManager.Instance.UpdateAuto();
             }
-            
-            
+  
         }
 
         public override void UpdateLevel()
@@ -52,12 +50,14 @@ namespace clicker {
 
         }
 
-        public override void SetLevel() 
+        // Using for prepare saving data
+        protected override void SetLevel() 
         { 
             GameState.Instance.lvlauto = level;
         }
 
-        public override void PutLevel()
+        // Using for update with loading data
+        protected override void PutLevel()
         {
             level = 0;
             level = GameState.Instance.lvlclick;
@@ -65,5 +65,6 @@ namespace clicker {
         }
 
     }
+
 }
 

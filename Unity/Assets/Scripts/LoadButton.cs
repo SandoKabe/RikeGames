@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -8,13 +6,14 @@ namespace clicker
 {
     public class LoadButton : MonoBehaviour, IPointerClickHandler
     {
-
+        // Using to set Loading Button behavior
         StateAPIClient saveManager;
         GraphicRaycaster m_Raycaster;
         PointerEventData m_PointerEventData;
         EventSystem m_EventSystem;
 
-        public Button btn;
+        // Loading Button to set alpha-numeric code
+        [SerializeField] private Button loadingBtn;
 
         // Update is called once per frame
         void Update()
@@ -24,15 +23,16 @@ namespace clicker
             m_Raycaster = GetComponent<GraphicRaycaster>();
             //Fetch the Event System from the Scene
             m_EventSystem = GetComponent<EventSystem>();
-            btn = btn.GetComponent<Button>();
+            loadingBtn = loadingBtn.GetComponent<Button>();
+
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            btn.transform.parent.gameObject.SetActive(true); 
-            //saveManager.Load();
+            loadingBtn.transform.parent.gameObject.SetActive(true); 
 
         }
 
     }
+
 }
