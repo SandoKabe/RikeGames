@@ -9,24 +9,28 @@ namespace clicker
     public class LoadButton : MonoBehaviour, IPointerClickHandler
     {
 
-        SaveGameManager saveManager;
+        StateAPIClient saveManager;
         GraphicRaycaster m_Raycaster;
         PointerEventData m_PointerEventData;
         EventSystem m_EventSystem;
 
+        public Button btn;
+
         // Update is called once per frame
         void Update()
         {
-            saveManager = transform.root.GetComponent<SaveGameManager>();
+            saveManager = transform.root.GetComponent<StateAPIClient>();
             //Fetch the Raycaster from the GameObject (the Canvas)
             m_Raycaster = GetComponent<GraphicRaycaster>();
             //Fetch the Event System from the Scene
             m_EventSystem = GetComponent<EventSystem>();
+            btn = btn.GetComponent<Button>();
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            saveManager.Load();
+            btn.transform.parent.gameObject.SetActive(true); 
+            //saveManager.Load();
 
         }
 

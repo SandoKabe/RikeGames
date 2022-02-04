@@ -18,7 +18,10 @@ namespace clicker
             InitContent();
 
         }
-
+        void OnAwake()
+        {
+            IncreaseLevel();
+        }
         public override void IncreaseLevel()
         {
             contentLev.text = "lvl" + clickCounter.level.ToString() + ".";

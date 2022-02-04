@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,13 +26,31 @@ namespace clicker
         static public event CallbackDelegate LEVEL_CHANGE_DELEGATE;
         static public event CallbackDelegate RES_CHANGE_DELEGATE;
 
+        protected void Awake()
+        {
+            SaveButton.GAME_DATA_DELEGATE += SetLevel;
+            GameState.LOAD_DATA_DELEGATE += UpdateLevel;
+        }
+
         protected void Start()
         {
             level = 0;
             nbResPerLevel = 0;
+            
+
         }
 
-        public virtual void SetResPerLevel() { }
+        protected void OnDestroy()
+        {
+            SaveButton.GAME_DATA_DELEGATE -= SetLevel;
+            GameState.LOAD_DATA_DELEGATE -= PutLevel;
+        }
+
+        public virtual void SetLevel() { }
+
+        public virtual void PutLevel() { }
+
+        public virtual void SetResPerLevel(bool loading = false) { }
 
         public virtual void UpdateLevel() { }
 

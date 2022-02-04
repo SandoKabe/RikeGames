@@ -13,7 +13,7 @@ namespace clicker {
 
         }
 
-        public override void SetResPerLevel()
+        public override void SetResPerLevel(bool loading = false)
         {
             if (level == 0)
             {
@@ -25,7 +25,12 @@ namespace clicker {
 
             }
             // Update nbResAuto
-            UIManager.Instance.UpdateAuto();
+            // TODO A sup si loading
+            if (!loading)
+            {
+                UIManager.Instance.UpdateAuto();
+            }
+            
             
         }
 
@@ -42,9 +47,21 @@ namespace clicker {
             { 
                 level = 0; 
             }
-           
+
             SetResPerLevel();
 
+        }
+
+        public override void SetLevel() 
+        { 
+            GameState.Instance.lvlauto = level;
+        }
+
+        public override void PutLevel()
+        {
+            level = 0;
+            level = GameState.Instance.lvlclick;
+            SetResPerLevel(true);
         }
 
     }

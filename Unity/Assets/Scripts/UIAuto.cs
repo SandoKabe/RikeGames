@@ -11,12 +11,17 @@ namespace clicker
         private Text contentLev;
         protected void Start()
         {
-
+            
             UIManager.AUTO_LEVEL_CHANGE_DELEGATE += IncreaseLevel;
             contentRes = GameObject.FindWithTag("ResA").GetComponent<Text>();
             contentLev = GameObject.FindWithTag("LevelA").GetComponent<Text>();
             InitContent();
 
+        }
+
+        void OnAwake()
+        {
+            IncreaseLevel();
         }
         //TODO Placer l'update du texte dans l'ojet UpgradeLevel de manière à ce qu'il soit mis à jour après le level
         // idem pour le UILEvel click et auto

@@ -15,10 +15,15 @@ namespace clicker
         }
 
 
-        public override void SetResPerLevel()
+        public override void SetResPerLevel(bool loading = false)
         {
             nbResPerLevel = Mathf.Pow(2, level);
-            UIManager.Instance.UpdateAuto();
+
+            if (!loading)
+            {
+                UIManager.Instance.UpdateAuto();
+            }
+            
         }
 
         public override void UpdateLevel()
@@ -30,6 +35,16 @@ namespace clicker
             }
             SetResPerLevel();
 
+        }
+        public override void SetLevel()
+        {
+            GameState.Instance.lvlclick = level;
+        }
+        public override void PutLevel() 
+        {
+            level = 0;
+            level = GameState.Instance.lvlclick;
+            SetResPerLevel(true);
         }
 
     }

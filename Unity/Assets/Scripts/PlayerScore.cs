@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace clicker
         const float LEVEL_PRICE = 20;
 
         // A remettre en private just for test
-        public float _score;
+        private float _score;
         
         private float Score { get { return _score; } }
 
@@ -44,6 +45,10 @@ namespace clicker
             // Register this callback with the static public events 
             UIManager.AUTO_LEVEL_CHANGE_DELEGATE += UpdateLevel;  
             UIManager.CLICK_LEVEL_CHANGE_DELEGATE += UpdateLevelClick;
+            SaveButton.GAME_DATA_DELEGATE += SetScore;
+            GameState.LOAD_DATA_DELEGATE += UpdateScore;
+
+
 
         }
 
@@ -52,8 +57,22 @@ namespace clicker
             // Unregister this callback from the static public events on AsteraX.
             UIManager.AUTO_LEVEL_CHANGE_DELEGATE -= UpdateLevel;
             UIManager.CLICK_LEVEL_CHANGE_DELEGATE -= UpdateLevelClick;
+            SaveButton.GAME_DATA_DELEGATE -= SetScore;
+            GameState.LOAD_DATA_DELEGATE -= UpdateScore;
             //UIManager.CLICK_LEVEL_CHANGE_DELEGATE -= upLevelClickSO.UpdateLevel;
 
+
+
+        }
+
+        private void SetScore()
+        {
+            GameState.Instance.score = Score;
+        }
+
+        private void UpdateScore()
+        {
+            _score = GameState.Instance.score;
         }
 
 
