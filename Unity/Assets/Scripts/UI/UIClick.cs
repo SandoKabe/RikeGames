@@ -18,8 +18,11 @@ namespace clicker
             InitContent();
 
         }
-        void OnAwake()
+        void OnEnable()
         {
+            contentRes = GameObject.FindWithTag("Resource").GetComponent<Text>();
+            contentLev = GameObject.FindWithTag("Level").GetComponent<Text>();
+            InitContent();
             IncreaseLevel();
         }
         public override void IncreaseLevel()

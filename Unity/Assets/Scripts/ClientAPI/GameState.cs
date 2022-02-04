@@ -31,6 +31,8 @@ namespace clicker
 
         }
 
+
+
         public delegate void LoadingDelegate();
         static public event LoadingDelegate LOAD_DATA_DELEGATE;
 
@@ -49,7 +51,18 @@ namespace clicker
             StateAPIClient.ON_SAVE_SUCCESS_DELEGATE += ShowCode;
 
             GenerateRandomCode();
-            return JsonUtility.ToJson(this);
+
+            GameStateData gameStateData = new GameStateData();
+            gameStateData.id = id;
+            gameStateData.saveId = saveId;
+            gameStateData.score = score;
+            gameStateData.lvlclick = lvlclick;
+            gameStateData.lvlauto = lvlauto;
+            gameStateData.seed = seed;
+            gameStateData.design = design;
+
+
+            return JsonUtility.ToJson(gameStateData);
 
         }
 
@@ -83,7 +96,16 @@ namespace clicker
                 return;
             }
 
-            GameState go = JsonUtility.FromJson<GameState>(json);
+            GameStateData go = JsonUtility.FromJson<GameStateData>(json);
+
+            id = go.id;
+            saveId = go.saveId;
+            score = go.score;
+            lvlauto = go.lvlauto;
+            lvlclick = go.lvlclick;
+            seed = go.seed;
+            design = go.design;
+
 
             if (LOAD_DATA_DELEGATE != null)
             {
@@ -105,5 +127,23 @@ namespace clicker
             codeCanvas.ShowError(json);
         }
 
+        
+
+        [System.Serializable]
+        public struct GameStateData
+        {
+            [SerializeField]
+            public int id;
+            public string saveId;
+            public float score;
+            public float lvlclick;
+            public float lvlauto;
+            public int seed;
+            public string design; // List of tree name
+
+        }
+
+
     }
+    
 }

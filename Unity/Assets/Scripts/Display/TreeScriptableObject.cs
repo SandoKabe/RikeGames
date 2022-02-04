@@ -11,7 +11,6 @@ namespace clicker
     public class TreeScriptableObject : ScriptableObject
     {
         public static TreeScriptableObject Instance;
-
         public TreeScriptableObject()
         {
             Instance = this;
@@ -43,11 +42,8 @@ namespace clicker
 
         public void UpdateOrderTree()
         {
-            //List<string> list = JsonUtility.FromJson<List<string>>(GameState.Instance.design);
-            //ordererTree
-            // EN fonction des noms de la liste récupérer les prefab puis setter ordererTree
             ordererTree.Clear();
-            ordererTree = new List<string>(GameState.Instance.design.Split(',')); // JsonUtility.FromJson<List<GameObject>>(json);
+            ordererTree = new List<string>(GameState.Instance.design.Split(','));
         }
 
         public GameObject GetTree(string name, bool loading = false)
@@ -64,21 +60,6 @@ namespace clicker
             
             return res;
         }
-        // Pas utilisé
-        public void ParseTree(string json)
-        {
-            if (json == "")
-            {
-                Debug.Log("Cannot retreive trees");
-            }
-            //ordererTree = new List<string>(names.Split(',')); // JsonUtility.FromJson<List<GameObject>>(json);
-            // List<string> listOfNames = new List<string>(names.Split(','));
-            Debug.Log("Tree json " + json);
-            Debug.Log("TRee first " + ordererTree.First());
-
-        }
-
-
 
     }
 

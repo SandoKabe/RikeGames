@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace clicker
 {
+    // Using to add an random index value on each tile and memorize them.
     public class Tiles : MonoBehaviour
     {
         Random.State lastState;
@@ -35,26 +36,12 @@ namespace clicker
             tileObjs = new List<TileObj>();
 
             initialSeed = Random.Range(0, 100);
-            Debug.Log("---------- seed after randon range creation :" + initialSeed);
-
-            //int initialSeed = PlayerPrefs.GetInt("seed", 100);
-            //if (initialSeed == 100)
-            //{
-            //    initialSeed = Random.Range(0, 100);
-            //}
-
-            //PlayerPrefs.SetInt("seed", initialSeed);
 
             InitTiles();
 
-            //Random.InitState(initialSeed);
             SetRandomInitState(initialSeed);
 
-            Debug.Log("-----Seed in start after inittiles : " + initialSeed);
-
         }
-
-        
 
         private void OnDestroy()
         {
@@ -64,9 +51,7 @@ namespace clicker
 
         private void InitTiles()
         {
-            Debug.Log("-----Seed InitTiles: " + initialSeed);
 
-            //Random.InitState(initialSeed);
             SetRandomInitState(initialSeed);
             indexList.Clear();
             tileObjs.Clear();
@@ -77,8 +62,8 @@ namespace clicker
             }
 
             indexList.Sort();
-            // Associer les tuiles à ma liste
 
+            // Associate Tiles and Random value
             for (int i = 0; i < tiles.Length; i++)
             {
                 tileObjs.Add(new TileObj(indexList[i], tiles[i], null));
@@ -93,7 +78,6 @@ namespace clicker
         public void UpdateSeed()
         {
             initialSeed = GameState.Instance.seed;
-            Debug.Log("---------- seed after loading :" + initialSeed);
             InitTiles();
         }
 
@@ -104,7 +88,6 @@ namespace clicker
 
         public GameObject GetNextTile()
         {
-            Debug.Log("--------------seed in GetNextTile" + initialSeed);
             TileObj query = null;
             float res = Random.value;
             try
@@ -114,7 +97,6 @@ namespace clicker
                 return tile;
             } catch (System.InvalidOperationException e)
             {
-                Debug.Log("Error on matching Tile " + e.Message);
                 return null;
             }
             

@@ -19,12 +19,14 @@ namespace clicker
 
         }
 
-        void OnAwake()
+        protected void OnEnable()
         {
+            contentRes = GameObject.FindWithTag("ResA").GetComponent<Text>();
+            contentLev = GameObject.FindWithTag("LevelA").GetComponent<Text>();
+            InitContent();
             IncreaseLevel();
         }
-        //TODO Placer l'update du texte dans l'ojet UpgradeLevel de manière à ce qu'il soit mis à jour après le level
-        // idem pour le UILEvel click et auto
+
         public override void IncreaseLevel()
         {
             contentLev.text = "lvl" + autoCounter.level.ToString() + ".";
@@ -37,8 +39,6 @@ namespace clicker
             contentLev.text = "lvl0.";
             contentRes.text = "0 per click";
         }
-
-        
 
     }
 }

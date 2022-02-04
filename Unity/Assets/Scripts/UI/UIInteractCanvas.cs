@@ -21,7 +21,7 @@ namespace clicker
 
         }
 
-    public void ShowCode()
+        public void ShowCode()
         {
             btnResCode.transform.parent.gameObject.SetActive(true);
             btnResCode.ShowInput();

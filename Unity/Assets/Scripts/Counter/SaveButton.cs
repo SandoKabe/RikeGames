@@ -8,7 +8,6 @@ namespace clicker
 {
     public class SaveButton : MonoBehaviour, IPointerClickHandler
     {
-
         StateAPIClient saveManager;
         GraphicRaycaster m_Raycaster;
         PointerEventData m_PointerEventData;

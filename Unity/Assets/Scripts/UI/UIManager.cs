@@ -36,12 +36,12 @@ namespace clicker
 
             upCanvas = GameObject.FindGameObjectWithTag("UpgradePanel");
             menuCanvas = GameObject.FindGameObjectWithTag("MenuPanel");
+
+        }
+        protected void Start()
+        {
             upCanvas.SetActive(toggle);
             menuCanvas.SetActive(!toggle);
-
-            
-
-
         }
 
         public void ToggleUpgradeMenu()

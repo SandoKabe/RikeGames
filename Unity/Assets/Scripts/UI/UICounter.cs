@@ -18,10 +18,6 @@ namespace clicker
             autoCounter = rike.GetComponent<AutoCounter>();
             clickCounter = rike.GetComponent<ClickCounter>();
 
-            
-
-            //content = GetComponent<Text>();
-            
         }
         protected void OnDestroy()
         {
@@ -31,6 +27,6 @@ namespace clicker
 
         protected virtual void InitContent() { }
 
-
     }
+
 }
